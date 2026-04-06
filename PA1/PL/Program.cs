@@ -11,7 +11,7 @@ namespace SmartDevices
 
             //Manufacturer objects
             Manufacturer philips = new Manufacturer("Philips Hue", "Netherlands");
-            Manufacturer lifx = new Manufacturer("LIFX ", "Australia");
+            Manufacturer lifx = new Manufacturer("LIFX", "Australia");
             Manufacturer nest = new Manufacturer("Google Nest", "USA");
             Manufacturer ecobee = new Manufacturer("Ecobee", "Canada");
             Manufacturer yale = new Manufacturer("Yale Smart Locks", "UK");
