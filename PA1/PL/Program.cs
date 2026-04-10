@@ -17,6 +17,9 @@ namespace SmartDevices
             //
 
             smartDeviceList = new List<SmartDevice>();
+            smartDeviceList.Add(new SmartLight("SL001", "Living Room Light", new Manufacturer("Philips", "Netherlands"), 75));
+            smartDeviceList.Add(new SmartThermostat("ST001", "Hallway Thermostat", new Manufacturer("Nest", "USA"), 22.5, 80));
+            smartDeviceList.Add(new SmartDoorLock("SDL001", "Front Door Lock", new Manufacturer("August", "USA"), 75));
     
         } // end method
         public static void Main(string[] args)
@@ -132,6 +135,19 @@ namespace SmartDevices
             //Input Parameter : none
             //Output Type     : none
             //
+            if (smartDeviceList.Count == 0)
+            {
+                WriteLine("No smart devices found.");
+            }//end if
+            else
+            {
+                WriteLine("Smart Devices:");
+                WriteLine("==============");
+                foreach (SmartDevice device in smartDeviceList)
+                {
+                    WriteLine($"ID: {device.DeviceId} | Name: {device.DeviceName} | Manufacturer: {device.Manufacturer.Name} | {device.GetStatus()}");
+                }//end foreach
+            }//end else
     
         } // end method
 
