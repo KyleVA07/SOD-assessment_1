@@ -5,6 +5,20 @@ namespace SmartDevices
 {
     internal class Program
     {
+        private static List<SmartDevice> smartDeviceList;
+        private static void Initialise()
+        {
+            //
+            //Method Name     : void Initialise() 
+            //Purpose         : Initialise and instantiate global variables
+            //Re-use          : none
+            //Input Parameter : none
+            //Output Type     : none
+            //
+
+            smartDeviceList = new List<SmartDevice>();
+    
+        } // end method
         public static void Main(string[] args)
         {
             
