@@ -1,4 +1,3 @@
-﻿using PA1.BL.Classes;
 using static System.Console;
 
 
@@ -12,13 +11,15 @@ namespace SmartDevices
     public abstract class SmartDevice
     {
         //Properties
+        public string DeviceId{ get; set; }
         public string DeviceName { get; set; }
         public Manufacturer Manufacturer { get; set; }
         public bool IsOn { get; private set; }
 
         //constructor
-        public SmartDevice(string deviceName, Manufacturer manufacturer)
+        public SmartDevice(string deviceId, string deviceName, Manufacturer manufacturer)
         {
+            DeviceId = deviceId;
             DeviceName = deviceName;
             Manufacturer = manufacturer;
         }
