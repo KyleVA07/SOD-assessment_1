@@ -22,11 +22,6 @@ namespace SmartDevices
             smartDeviceList.Add(new SmartDoorLock("SDL001", "Front Door Lock", new Manufacturer("August", "USA"), 75));
     
         } // end method
-        public static void Main(string[] args)
-        {
-            
-
-        }
         public static void ShowMainMenu()
         {
             //
@@ -270,5 +265,84 @@ namespace SmartDevices
             }//end else
     
         } // end method
-    }
-}
+        private static SmartDevice FindSmartDevice(string deviceId)
+        {
+            //
+            //Method Name     : SmartDevice FindSmartDevice(string deviceId)
+            //Purpose         : Search for a SmartDevice object in the generic collection
+            //Re-use          : none
+            //Input Parameter : string deviceId
+            //Output Type     : SmartDevice
+            //                  - if the SmartDevice object was found it is returned, otherwise null
+            //
+            bool found = false;
+            int lc = 0;
+            SmartDevice deviceRef = null;
+            while (found == false && lc < smartDeviceList.Count)
+            {
+                if (smartDeviceList[lc].DeviceId == deviceId)
+                {
+                found = true;
+                deviceRef = smartDeviceList[lc];
+                } // end if
+
+                lc++;
+            } // end while
+
+            return deviceRef;
+        } // end method
+        private static void Main(string[] args)
+        {
+            //
+            //Method Name     : void Main(string[] args)
+            //Purpose         : Main entry into program
+            //Re-use          : Initialise(); ShowMainMenu();
+            //                  ProcessEmployeeMenu(); ProcessStudentMenu();
+            //Input Parameter : string[] args
+            //                  - command line args - not used
+            //Output Type     : none
+            //
+            char choice = '0';
+            ConsoleKeyInfo cki;
+
+            try
+            {
+                Initialise();
+
+                WriteLine();
+                ShowMainMenu();
+
+                cki = ReadKey();
+                WriteLine();
+                choice = cki.KeyChar;
+
+                while (choice != 'x' && choice != 'X')
+                {
+                    switch (choice)
+                    {
+                        case '1':
+                            ProcessSmartDeviceMenu();
+                            break;
+                        case 'x':
+                        case 'X':
+                            break;
+                        default:
+                            WriteLine("Invalid input");
+                            break;
+                    } // end switch
+
+                    WriteLine();
+                    ShowMainMenu();
+
+                    cki = ReadKey();
+                    WriteLine();
+                    choice = cki.KeyChar;
+                } // end while
+            } // end try 
+            catch (Exception ex)
+            {
+                WriteLine(ex.Message);
+            } // end catch
+        }//end method
+    }//end class internal program
+}//end namespace
