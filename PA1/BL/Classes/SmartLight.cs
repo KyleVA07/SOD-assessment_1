@@ -35,5 +35,15 @@ namespace SmartDevices
         {
             return left.Brightness < right.Brightness;
         }
+        public override string ToString()
+        {
+         return $"\nPlease supply the following SmartDevice info:" +
+         $"\nDevice ID: {DeviceId}" +
+         $"\nDevice Name: {DeviceName}" +
+         $"\nManufacturer Name: {Manufacturer.Name}" +
+         $"\nManufacturer Country: {Manufacturer.Country}" +
+         $"\nBrightness (0-100): {Brightness}" +
+         $"\n\n{DeviceName} added";
+         }
     }
 }
