@@ -111,40 +111,107 @@ namespace SmartDevices
         } // end method
          public static void SmartDeviceAdd()
         {
-            WriteLine();
-            WriteLine("SMART HOME SYSTEM - SmartDevice Add - Please select an option:");
-            WriteLine("===============================================================");
-            WriteLine("1. Add a Smart Light");
-            WriteLine("2. Add A Smart Thermostat");
-            WriteLine("3. Add a Smart Door Lock");
-            WriteLine("R. Return");
-            WriteLine();
-
-            char input = '0';
-            input = ReadKey().KeyChar;
-
-            switch (input)
             {
-            case '1':
-            foreach (var device in smartDeviceList.OfType<SmartLight>())
-            WriteLine(device);
+    string deviceId = "";
+    string deviceName = "";
+    string manufacturerName = "";
+    string manufacturerCountry = "";
+
+    SmartDevice deviceFoundRef = null;
+    SmartDevice device = null;
+
+    char choice = '0';
+
+    if (smartDeviceList.Count > 0)
+    {
+        WriteLine();
+        WriteLine("SMART HOME SYSTEM - Add Smart Device");
+        WriteLine("=====================================");
+        WriteLine("1. Add Smart Light");
+        WriteLine("2. Add Smart Thermostat");
+        WriteLine("3. Add Smart Door Lock");
+        WriteLine("R. Return");
+
+        choice = ReadLine().ToUpper()[0];
+
+        while (choice != 'R')
+        {
             WriteLine();
-            break;
-            case '2':
-            foreach (var device in smartDeviceList.OfType<SmartThermostat>())
-            WriteLine(device);
+
+            Write("Device ID: ");
+            deviceId = ReadLine().ToUpper();
+
+            deviceFoundRef = FindSmartDevice(deviceId);
+
+            if (deviceFoundRef != null)
+            {
+                WriteLine(deviceId + " NOT added since it is already in the system");
+            }
+            else
+            {
+                Write("Device Name: ");
+                deviceName = ReadLine();
+
+                Write("Manufacturer Name: ");
+                manufacturerName = ReadLine();
+
+                Write("Manufacturer Country: ");
+                manufacturerCountry = ReadLine();
+
+                Manufacturer manufacturer = new Manufacturer(manufacturerName, manufacturerCountry);
+
+                switch (choice)
+                {
+                    case '1':
+                        Write("Brightness (0-100): ");
+                        int brightness = int.Parse(ReadLine());
+
+                        device = new SmartLight(deviceId, deviceName, manufacturer, brightness);
+                        break;
+
+                    case '2':
+                        Write("Temperature: ");
+                        double temp = double.Parse(ReadLine());
+
+                        Write("Battery Level (0-100): ");
+                        int battery = int.Parse(ReadLine());
+
+                        device = new SmartThermostat(deviceId, deviceName, manufacturer, temp, battery);
+                        break;
+
+                    case '3':
+                        Write("Battery Level (0-100): ");
+                        int lockBattery = int.Parse(ReadLine());
+
+                        device = new SmartDoorLock(deviceId, deviceName, manufacturer, lockBattery);
+                        break;
+
+                    default:
+                        WriteLine("Invalid input");
+                        break;
+                }
+
+                if (device != null)
+                {
+                    smartDeviceList.Add(device);
+                    WriteLine(deviceId + " added successfully");
+                }
+            }
+
             WriteLine();
-            break;
-            case '3':
-            foreach (var device in smartDeviceList.OfType<SmartDoorLock>())
-            WriteLine(device);
-            WriteLine();
-            break;
-            case 'R':
-            ShowSmartDeviceMainMenu();
-            break;
-            default:
-            break;
+            WriteLine("1. Add Smart Light");
+            WriteLine("2. Add Smart Thermostat");
+            WriteLine("3. Add Smart Door Lock");
+            WriteLine("R. Return");
+
+            choice = ReadLine().ToUpper()[0];
+        }
+    }
+    else
+    {
+        WriteLine("No smart devices found in system.");
+    }
+}
 }
         } // end method
 
