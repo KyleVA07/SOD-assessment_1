@@ -35,7 +35,17 @@ namespace SmartDevices
 
             return "Door lock fully charged";
         }
-
+        public override string ToString()
+        {
+          return $"\nPlease supply the following SmartDevice info:" +
+           $"\nDevice ID: {DeviceId}" +
+           $"\nDevice Name: {DeviceName}" +
+           $"\nManufacturer Name: {Manufacturer.Name}" +
+           $"\nManufacturer Country: {Manufacturer.Country}" +
+           $"\nBattery Level: {BatteryLevel}" +
+           $"\nLock State: {(IsLocked ? "Locked" : "Unlocked")}" +
+           $"\n\n{DeviceName} added";
+         }
 
 
 
