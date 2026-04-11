@@ -33,6 +33,16 @@ namespace SmartDevices
 
             return "Thermostat fully charged.";
         }
-
+        public override string ToString()
+        {
+         return $"\nPlease supply the following SmartDevice info:" +
+           $"\nDevice ID: {DeviceId}" +
+           $"\nDevice Name: {DeviceName}" +
+           $"\nManufacturer Name: {Manufacturer.Name}" +
+           $"\nManufacturer Country: {Manufacturer.Country}" +
+           $"\nTemperature : {Temperature}" +
+           $"\nBattery Level: {BatteryLevel}" +
+           $"\n\n{DeviceName} added";
+        }
     }
 }
