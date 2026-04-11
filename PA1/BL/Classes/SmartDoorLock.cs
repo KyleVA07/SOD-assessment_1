@@ -1,5 +1,4 @@
-﻿using PA1.BL.Classes;
-using static System.Console;
+﻿using static System.Console;
 
 
 namespace SmartDevices
@@ -11,7 +10,7 @@ namespace SmartDevices
 
 
         //Constructors
-        public SmartDoorLock(string name, Manufacturer manufacturer, int batteryLevel, bool isLocked = false) : base(name, manufacturer)
+        public SmartDoorLock(string deviceId, string name, Manufacturer manufacturer, int batteryLevel, bool isLocked = false) : base(deviceId, deviceName, manufacturer)
         {
             IsLocked = isLocked;
             BatteryLevel = batteryLevel;
