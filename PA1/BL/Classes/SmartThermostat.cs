@@ -11,7 +11,7 @@ namespace SmartDevices
 
 
         //constructor
-        public SmartThermostat(string name, Manufacturer manufacturer, double temperature, int batteryLevel) : base(name, manufacturer)
+        public SmartThermostat(string deviceId, string deviceName, Manufacturer manufacturer, double temperature, int batteryLevel) : base(string deviceId, string deviceName, manufacturer)
         {
 
             Temperature = temperature;
