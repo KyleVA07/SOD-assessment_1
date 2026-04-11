@@ -52,7 +52,7 @@ namespace SmartDevices
             WriteLine("==============================================");
             WriteLine("1. List All Smart Devices");
             WriteLine("2. Add A Smart Device");
-            WriteLine("3. A Smart Device");
+            WriteLine("3. Remove A Smart Device");
             WriteLine("4. Update A Smart Device");
             WriteLine("R. Return");
             WriteLine();
