@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "zSbzewg1psU=",
+  "dgSpecHash": "rfWOmu3/T0U=",
   "success": true,
-  "projectFilePath": "C:\\Users\\phila\\OneDrive\\Desktop\\SOD216 WORK\\PA1\\PA1.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/workspaces/SOD-assessment_1/PA1/PA1.csproj",
+  "expectedPackageFiles": [
+    "/home/codespace/.nuget/packages/microsoft.netcore.app.ref/8.0.22/microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.22/microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.22/microsoft.netcore.app.host.linux-x64.8.0.22.nupkg.sha512"
+  ],
   "logs": []
 }
