@@ -1,4 +1,3 @@
-
 using static System.Console;
 
 namespace SmartDevices
