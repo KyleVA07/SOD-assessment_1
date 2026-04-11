@@ -109,8 +109,8 @@ namespace SmartDevices
                 choice = cki.KeyChar;
             } // end while
         } // end method
- public static void SmartDeviceAdd()
- {
+        public static void SmartDeviceAdd()
+{
     //
     //Method Name     : void SmartDeviceAdd() 
     //Purpose         : Get new Smart Device info and try to add it to DB
@@ -146,63 +146,71 @@ namespace SmartDevices
             {
                 WriteLine();
 
-                Write("Device ID: ");
+                if (choice != '1' && choice != '2' && choice != '3')
+                {
+                    WriteLine("Invalid input. Please select 1, 2, 3 or R.");
+                }
+
+                else
+                {
+                 Write("Device ID: ");
                 deviceId = ReadLine().ToUpper();
 
                 deviceFoundRef = FindSmartDevice(deviceId);
 
-                if (deviceFoundRef != null)
-                {
-                    WriteLine(deviceId + " NOT added since it is already in the system");
-                }
-                else
-                {
-                    Write("Device Name: ");
-                    deviceName = ReadLine();
-
-                    Write("Manufacturer Name: ");
-                    manufacturerName = ReadLine();
-
-                    Write("Manufacturer Country: ");
-                    manufacturerCountry = ReadLine();
-
-                    Manufacturer manufacturer = new Manufacturer(manufacturerName, manufacturerCountry);
-
-                    switch (choice)
+                    if (deviceFoundRef != null)
                     {
-                        case '1':
-                            Write("Brightness (0-100): ");
-                            int brightness = int.Parse(ReadLine());
-
-                            device = new SmartLight(deviceId, deviceName, manufacturer, brightness);
-                            break;
-
-                        case '2':
-                            Write("Temperature: ");
-                            double temp = double.Parse(ReadLine());
-
-                            Write("Battery Level (0-100): ");
-                            int battery = int.Parse(ReadLine());
-
-                            device = new SmartThermostat(deviceId, deviceName, manufacturer, temp, battery);
-                            break;
-
-                        case '3':
-                            Write("Battery Level (0-100): ");
-                            int lockBattery = int.Parse(ReadLine());
-
-                            device = new SmartDoorLock(deviceId, deviceName, manufacturer, lockBattery);
-                            break;
-
-                        default:
-                            WriteLine("Invalid input");
-                            break;
+                        WriteLine(deviceId + " NOT added since it is already in the system");
                     }
-
-                    if (device != null)
+                    else
                     {
-                        smartDeviceList.Add(device);
-                        WriteLine(deviceId + " added successfully");
+                        Write("Device Name: ");
+                        deviceName = ReadLine();
+
+                        Write("Manufacturer Name: ");
+                        manufacturerName = ReadLine();
+
+                        Write("Manufacturer Country: ");
+                        manufacturerCountry = ReadLine();
+
+                        Manufacturer manufacturer = new Manufacturer(manufacturerName, manufacturerCountry);
+
+                        switch (choice)
+                        {
+                            case '1':
+                                Write("Brightness (0-100): ");
+                                int brightness = int.Parse(ReadLine());
+
+                                device = new SmartLight(deviceId, deviceName, manufacturer, brightness);
+                                break;
+
+                            case '2':
+                                Write("Temperature: ");
+                                double temp = double.Parse(ReadLine());
+
+                                Write("Battery Level (0-100): ");
+                                int battery = int.Parse(ReadLine());
+
+                                device = new SmartThermostat(deviceId, deviceName, manufacturer, temp, battery);
+                                break;
+
+                            case '3':
+                                Write("Battery Level (0-100): ");
+                                int lockBattery = int.Parse(ReadLine());
+
+                                device = new SmartDoorLock(deviceId, deviceName, manufacturer, lockBattery);
+                                break;
+
+                            default:
+                                WriteLine("Invalid input");
+                                break;
+                        }
+
+                        if (device != null)
+                        {
+                            smartDeviceList.Add(device);
+                            WriteLine(deviceId + " added successfully");
+                        }
                     }
                 }
 
@@ -221,7 +229,6 @@ namespace SmartDevices
         }
     }
 } // end method
-
          public static void SmartDeviceList()
         {
             //
