@@ -10,7 +10,7 @@ namespace SmartDevices
 
 
         //Constructors
-        public SmartDoorLock(string deviceId, string name, Manufacturer manufacturer, int batteryLevel, bool isLocked = false) : base(deviceId, deviceName, manufacturer)
+        public SmartDoorLock(string deviceId, string deviceName, Manufacturer manufacturer, int batteryLevel, bool isLocked = false) : base(deviceId, deviceName, manufacturer)
         {
             IsLocked = isLocked;
             BatteryLevel = batteryLevel;
