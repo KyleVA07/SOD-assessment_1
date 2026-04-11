@@ -155,6 +155,29 @@ namespace SmartDevices
             //Input Parameter : none
             //Output Type     : none
             //
+             string deviceId = "";
+             SmartDevice smdRef;
+
+        if (smartDeviceList.Count > 0)
+         {
+          Write("Please enter the SmartDevice ID to remove: ");
+          deviceId = ReadLine().ToUpper();
+
+          smdRef = FindSmartDevice(deviceId);
+                  if (smdRef != null)
+                  {
+                     smartDeviceList.Remove(smdRef);
+                     WriteLine(deviceId + " removed successfully.");
+                  }//end if
+                 else
+                 {
+                    WriteLine(deviceId + " not removed since it is not in the system.");
+                 }//end else
+                }//end if
+         else
+        {
+           WriteLine("No smart devices found to remove.");
+        }//end else
    
         } // end method
 
