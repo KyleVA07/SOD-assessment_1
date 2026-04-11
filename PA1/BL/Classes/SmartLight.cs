@@ -9,7 +9,7 @@ namespace SmartDevices
         public int Brightness { get; private set; }
 
         //constructors
-        public SmartLight(string name, Manufacturer manufacturer, int brightness) : base(name, manufacturer)
+        public SmartLight(string deviceId, string deviceName, Manufacturer manufacturer, int brightness) : base(deviceId, deviceName, manufacturer)
         {
 
             Brightness = brightness;
