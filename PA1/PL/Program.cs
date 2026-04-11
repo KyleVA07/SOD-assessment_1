@@ -111,14 +111,41 @@ namespace SmartDevices
         } // end method
          public static void SmartDeviceAdd()
         {
-            //
-            //Method Name     : void SmartDeviceAdd() 
-            //Purpose         : Get new Smart Device info and try to add it to DB
-            //Re-use          : none
-            //Input Parameter : none
-            //Output Type     : none
-            //
-    
+            WriteLine();
+            WriteLine("SMART HOME SYSTEM - SmartDevice Add - Please select an option:");
+            WriteLine("===============================================================");
+            WriteLine("1. Add a Smart Light");
+            WriteLine("2. Add A Smart Thermostat");
+            WriteLine("3. Add a Smart Door Lock");
+            WriteLine("R. Return");
+            WriteLine();
+
+            char input = '0';
+            input = ReadKey().KeyChar;
+
+            switch (input)
+            {
+            case '1':
+            foreach (var device in smartDeviceList.OfType<SmartLight>())
+            WriteLine(device);
+            WriteLine();
+            break;
+            case '2':
+            foreach (var device in smartDeviceList.OfType<SmartThermostat>())
+            WriteLine(device);
+            WriteLine();
+            break;
+            case '3':
+            foreach (var device in smartDeviceList.OfType<SmartDoorLock>())
+            WriteLine(device);
+            WriteLine();
+            break;
+            case 'R':
+            ShowSmartDeviceMainMenu();
+            break;
+            default:
+            break;
+}
         } // end method
 
          public static void SmartDeviceList()
