@@ -291,100 +291,106 @@ namespace SmartDevices
 
       public static void SmartDeviceUpdate()
 {
-            //
-            //Method Name     : void SmartDeviceUpdate() 
-            //Purpose         : Update existing smart device info
-            //Re-use          : none
-            //Input Parameter : none
-            //Output Type     : none
-            //
-            string deviceId = "";
-            string deviceName = "";
-            Manufacturer manufacturer = null;
-            bool validInput = false;
+           //
+ //Method Name     : void SmartDeviceUpdate() 
+ //Purpose         : Update existing smart device info
+ //Re-use          : none
+ //Input Parameter : none
+ //Output Type     : none
+ //
 
-            SmartDevice deviceFoundRef = null;
-            bool change = false;
+ string deviceId = "";
+ string deviceName = "";
+ Manufacturer manufacturer = null;
+ bool validInput = false;
 
-            if(smartDeviceList.Count > 0)
-            {
-                WriteLine();
-                WriteLine("Please enter the SmartDevice ID:");
-                deviceId = ReadLine().ToUpper();
-                deviceFoundRef = FindSmartDevice(deviceId);
-                if (deviceFoundRef != null)
-                {
-                    Write("New device name or press Enter to keep current name: ");
-                    deviceName = ReadLine();
-                    if (deviceName.Length != 0)
-                    {
-                        deviceFoundRef.DeviceName = deviceName;
-                        change = true;
-                    }//end if
-                    while (validInput == false)
-                    {
-                        Write("Turn device ON/OFF (on/off) or press Enter to not change: ");
-                        string isOnInput = ReadLine().ToUpper();
-                        if (isOnInput.Length == 0)
-                        {
-                            validInput = true;
-                        }//end if
-                        else if (isOnInput == "ON")
-                        {
+ SmartDevice deviceFoundRef = null;
+ bool change = false;
 
-                            deviceFoundRef.TurnOn();
-                            change = true;
-                            validInput = true;
-                        }//end else if
-                        else if (isOnInput == "OFF")
-                        {
-                            deviceFoundRef.TurnOff();
-                            change = true;
-                            validInput = true;
-                        }//end else if
-                        else
-                        {
-                            WriteLine("Invalid input. Please enter 'ON' or 'OFF'.");
-                        }//end else
-                    }//end while
-                    if (deviceFoundRef is IBatteryPowered batteryPowered)
-                    {
-                        validInput = false;
+ if(smartDeviceList.Count > 0)
+ {
+     WriteLine();
+     WriteLine("Please enter the SmartDevice ID:");
+     deviceId = ReadLine().ToUpper();
+     deviceFoundRef = FindSmartDevice(deviceId);
+     if (deviceFoundRef != null)
+     {
+         Write("New device name or press Enter to keep current name: ");
+         deviceName = ReadLine();
+         if (deviceName.Length != 0)
+         {
+             deviceFoundRef.DeviceName = deviceName;
+             change = true;
+         }//end if
+         while (validInput == false)
+         {
+             Write("Turn device ON/OFF (on/off) or press Enter to not change: ");
+             string isOnInput = ReadLine().ToUpper();
+             if (isOnInput.Length == 0)
+             {
+                 validInput = true;
+             }//end if
+             else if (isOnInput == "ON")
+             {
 
-                        while (validInput == false)
-                        {
-                            Write("New battery level (0-100) or press Enter to keep current level: ");
-                            string input = ReadLine();
-                            if (input.Length == 0)
-                            {
-                                validInput = true;
-                            }//end if
-                            else if (int.TryParse(input, out int batteryLevelInput))
-                            {
+                 deviceFoundRef.TurnOn();
+                 change = true;
+                 validInput = true;
+             }//end else if
+             else if (isOnInput == "OFF")
+             {
+                 deviceFoundRef.TurnOff();
+                 change = true;
+                 validInput = true;
+             }//end else if
+             else
+             {
+                 WriteLine("Invalid input. Please enter 'ON' or 'OFF'.");
+             }//end else
+         }//end while
+         if (deviceFoundRef is IBatteryPowered batteryPowered)
+         {
+             validInput = false;
 
-                                if (batteryLevelInput >= 0 && batteryLevelInput <= 100)
-                                {
-                                    batteryPowered.BatteryLevel = batteryLevelInput;
-                                    change = true;
-                                    validInput = true;
-                                }//end if
-                                else
-                                {
-                                    WriteLine("Invalid input. Please enter a valid integer between 0 and 100.");
-                                }//end else
-                            }//end else if
-                            else
-                            {
-                                WriteLine($"Format Error: {input} is not a valid number. Please use digits.");
-                            }//end else
-                        }//end while
-             
-                    }//end if
-                    if (change == true)
-                    {
-                        WriteLine($"{deviceId} updated successfully.");
-                        change = false;
-                    }//end if
+             while (validInput == false)
+             {
+                 Write("New battery level (0-100) or press Enter to keep current level: ");
+                 string input = ReadLine();
+                 if (input.Length == 0)
+                 {
+                     validInput = true;
+                 }//end if
+                 else if (int.TryParse(input, out int batteryLevelInput))
+                 {
+
+                     if (batteryLevelInput >= 0 && batteryLevelInput <= 100)
+                     {
+                         batteryPowered.BatteryLevel = batteryLevelInput;
+                         change = true;
+                         validInput = true;
+                     }//end if
+                     else
+                     {
+                         WriteLine("Invalid input. Please enter a valid integer between 0 and 100.");
+                     }//end else
+                 }//end else if
+                 else
+                 {
+                     WriteLine($"Format Error: {input} is not a valid number. Please use digits.");
+                 }//end else
+             }//end while
+              
+         }//end if
+         if (change)
+         {
+             WriteLine($"{deviceId} updated successfully.");
+         }//end if
+     }//end if
+ }//end if
+ else
+ {
+     WriteLine($"SmartDevice {deviceId.ToUpper()} NOT FOUND!");
+ }//end else
                     if (deviceFoundRef is SmartLight smartLight)
                     {
                         validInput = false;
