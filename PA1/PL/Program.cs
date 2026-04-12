@@ -383,8 +383,124 @@ namespace SmartDevices
                     if (change)
                     {
                         WriteLine($"{deviceId} updated successfully.");
+                        change = false;
+                    }//end if
+                    if (deviceFoundRef is SmartLight smartLight)
+                    {
+                        validInput = false;
+                        while (validInput == false)
+                        {
+                            Console.Write("Set light brightness level 0-100 or press Enter to keep current status: ");
+                            string input = Console.ReadLine();
+                            if (input.Length == 0)
+                            {
+                                validInput = true;
+                            }//end if
+                            else if (int.TryParse(input, out int brightnessInput))
+                            {
+                                if (brightnessInput >= 0 && brightnessInput <= 100)
+                                {
+                                    smartLight.SetBrightness(brightnessInput);
+                                    change = true;
+                                    validInput = true;
+                                }//end if
+                                else
+                                {
+                                    Console.WriteLine("Invalid input. Please enter a valid input: 0-100.");
+                                }//end else
+                            }//end else if
+                            else
+                            {
+                                Console.WriteLine($"Format Error: {input} is not a valid option. Please use digits.");
+                            }//end else
+                        }//end while
+                    }
+                    if (change == true)
+                    {
+                        Console.WriteLine($"{deviceId} updated successfully.");
+                        change = false;
+                    }//end if
+                    if (deviceFoundRef is SmartThermostat smartThermostat)
+                    {
+                        validInput = false;
+                        while (validInput == false)
+                        {
+                            Console.Write("Set Temperature or press Enter to keep current status: ");
+                            string input = Console.ReadLine();
+                            if (input.Length == 0)
+                            {
+                                validInput = true;
+                            }//end if
+                            else if (double.TryParse(input, out double temperatureInput))
+                            {
+                                if (temperatureInput >= 0 || temperatureInput <= 100)
+                                {
+                                    smartThermostat.SetTemperature(temperatureInput);
+                                    change = true;
+                                    validInput = true;
+                                }//end if
+                                else
+                                {
+                                    Console.WriteLine("Invalid input. Please enter a valid input: decimal number.");
+                                }//end else
+                            }//end else if
+                            else
+                            {
+                                Console.WriteLine($"Format Error: {input} is not a valid option. Please use a decimal number.");
+                            }//end else
+                        }//end while
+                    }
+                    if (change == true)
+                    {
+                        Console.WriteLine($"{deviceId} updated successfully.");
+                        change = false;
+                    }//end if
+                    if (deviceFoundRef is SmartDoorLock smartDoorLock)
+                    {
+                        validInput = false;
+                        string lockState ="";
+                        while (validInput == false)
+                        {
+                            if (smartDoorLock.IsLocked == true)
+                            {
+                                lockState = "Locked";
+                            }
+                            else
+                            {
+                                lockState = "Unlocked";
+                            }
+                            Console.Write("Set door is currently {0} do you want to change it Y/N?",lockState);
+                            string input = Console.ReadLine();
+                            if (input.Length == 1 && input.ToLower() == "n")
+                            {
+                                validInput = true;
+                            }//end if
+                            else if (input.Length == 1)
+                            {
+                                if (input.ToLower() == "y")
+                                {
+                                    smartDoorLock.ToggleLock();
+                                    change = true;
+                                    validInput = true;
+                                }//end if
+                                else
+                                {
+                                    Console.WriteLine("Invalid input. Please enter a valid input: Y or N.");
+                                }//end else
+                            }//end else if
+                            else
+                            {
+                                Console.WriteLine($"Format Error: {input} is not a valid option. Please use Y or N.");
+                            }//end else
+                        }//end while
+                    }
+                    if (change == true)
+                    {
+                        Console.WriteLine($"{deviceId} updated successfully.");
+                        change = false;
                     }//end if
                 }//end if
+            }//end if
                 else
                 {
                     WriteLine($"SmartDevice {deviceId.ToUpper()} NOT FOUND!");
