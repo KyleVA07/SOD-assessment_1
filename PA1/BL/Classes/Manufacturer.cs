@@ -24,23 +24,8 @@ namespace SmartDevices
         }
         public Manufacturer(string name, string country)
         {
-            if (name != "")
-            {
-                Name = name;
-            }
-            else
-            {
-                Name = "Unknown Name";
-            }
-
-            if (country != "")
-            {
-                Country = country;
-            }
-            else
-            {
-                Country = "Unknown Country";
-            }
+            Name = name;
+            Country = country;
         }
 
         public string GetInfo()
