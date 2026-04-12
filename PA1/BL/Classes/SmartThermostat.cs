@@ -1,4 +1,4 @@
-﻿using PA1.BL.Classes;
+﻿
 using static System.Console;
 
 namespace SmartDevices
@@ -11,7 +11,7 @@ namespace SmartDevices
 
 
         //constructor
-        public SmartThermostat(string deviceId, string deviceName, Manufacturer manufacturer, double temperature, int batteryLevel) : base(string deviceId, string deviceName, manufacturer)
+        public SmartThermostat(string deviceId, string deviceName, Manufacturer manufacturer, double temperature, int batteryLevel) : base(deviceId, deviceName, manufacturer)
         {
 
             Temperature = temperature;

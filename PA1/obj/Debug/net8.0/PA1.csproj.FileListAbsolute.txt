@@ -1,0 +1,15 @@
+/workspaces/SOD-assessment_1/PA1/obj/Debug/net8.0/PA1.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/SOD-assessment_1/PA1/obj/Debug/net8.0/PA1.AssemblyInfoInputs.cache
+/workspaces/SOD-assessment_1/PA1/obj/Debug/net8.0/PA1.AssemblyInfo.cs
+/workspaces/SOD-assessment_1/PA1/obj/Debug/net8.0/PA1.csproj.CoreCompileInputs.cache
+/workspaces/SOD-assessment_1/PA1/obj/Debug/net8.0/PA1.sourcelink.json
+/workspaces/SOD-assessment_1/PA1/bin/Debug/net8.0/PA1
+/workspaces/SOD-assessment_1/PA1/bin/Debug/net8.0/PA1.deps.json
+/workspaces/SOD-assessment_1/PA1/bin/Debug/net8.0/PA1.runtimeconfig.json
+/workspaces/SOD-assessment_1/PA1/bin/Debug/net8.0/PA1.dll
+/workspaces/SOD-assessment_1/PA1/bin/Debug/net8.0/PA1.pdb
+/workspaces/SOD-assessment_1/PA1/obj/Debug/net8.0/PA1.dll
+/workspaces/SOD-assessment_1/PA1/obj/Debug/net8.0/refint/PA1.dll
+/workspaces/SOD-assessment_1/PA1/obj/Debug/net8.0/PA1.pdb
+/workspaces/SOD-assessment_1/PA1/obj/Debug/net8.0/PA1.genruntimeconfig.cache
+/workspaces/SOD-assessment_1/PA1/obj/Debug/net8.0/ref/PA1.dll
