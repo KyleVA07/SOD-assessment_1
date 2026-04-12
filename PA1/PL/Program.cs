@@ -1,5 +1,9 @@
 ﻿#pragma warning disable CS8602
+#pragma warning disable CS8604
+#pragma warning disable CS8603
 #pragma warning disable CS8600
+#pragma warning disable CS8618
+#pragma warning disable CS0219
 
 using static System.Console;
 using System.Collections;
