@@ -1,4 +1,7 @@
-﻿using static System.Console;
+﻿#pragma warning disable CS8602
+#pragma warning disable CS8600
+
+using static System.Console;
 using System.Collections;
 
 namespace SmartDevices
@@ -17,10 +20,11 @@ namespace SmartDevices
             //
 
             smartDeviceList = new List<SmartDevice>();
+
             smartDeviceList.Add(new SmartLight("SL001", "Living Room Light", new Manufacturer("Philips", "Netherlands"), 75));
             smartDeviceList.Add(new SmartThermostat("ST001", "Hallway Thermostat", new Manufacturer("Nest", "USA"), 22.5, 80));
             smartDeviceList.Add(new SmartDoorLock("SDL001", "Front Door Lock", new Manufacturer("August", "USA"), 75));
-    
+
         } // end method
         public static void ShowMainMenu()
         {
@@ -38,6 +42,7 @@ namespace SmartDevices
             WriteLine("X. Exit");
             WriteLine();
         } // end method ShowMainMenu()
+
         public static void ShowSmartDeviceMainMenu()
         {
             //
@@ -81,24 +86,24 @@ namespace SmartDevices
             {
                 switch (choice)
                 {
-                case '1':
-                    SmartDeviceList();
-                break;
-                case '2':
-                    SmartDeviceAdd();
-                break;
-                case '3':
-                    SmartDeviceRemove();
-                break;
-                case '4':
-                    SmartDeviceUpdate();
-                break;
-                case 'R':
-                case 'r':
-                break;
-                default:
-                    WriteLine("Invalid input");
-                break;
+                    case '1':
+                        SmartDeviceList();
+                        break;
+                    case '2':
+                        SmartDeviceAdd();
+                        break;
+                    case '3':
+                        SmartDeviceRemove();
+                        break;
+                    case '4':
+                        SmartDeviceUpdate();
+                        break;
+                    case 'R':
+                    case 'r':
+                        break;
+                    default:
+                        WriteLine("Invalid input");
+                        break;
                 } // end switch
 
                 WriteLine();
@@ -109,127 +114,7 @@ namespace SmartDevices
                 choice = cki.KeyChar;
             } // end while
         } // end method
-        public static void SmartDeviceAdd()
-{
-    //
-    //Method Name     : void SmartDeviceAdd() 
-    //Purpose         : Get new Smart Device info and try to add it to DB
-    //Re-use          : none
-    //Input Parameter : none
-    //Output Type     : none
-    //
-
-    {
-        string deviceId = "";
-        string deviceName = "";
-        string manufacturerName = "";
-        string manufacturerCountry = "";
-
-        SmartDevice deviceFoundRef = null;
-        SmartDevice device = null;
-
-        char choice = '0';
-
-        if (smartDeviceList.Count > 0)
-        {
-            WriteLine();
-            WriteLine("SMART HOME SYSTEM - Add Smart Device");
-            WriteLine("=====================================");
-            WriteLine("1. Add Smart Light");
-            WriteLine("2. Add Smart Thermostat");
-            WriteLine("3. Add Smart Door Lock");
-            WriteLine("R. Return");
-
-            choice = ReadLine().ToUpper()[0];
-
-            while (choice != 'R')
-            {
-                WriteLine();
-
-                if (choice != '1' && choice != '2' && choice != '3')
-                {
-                    WriteLine("Invalid input. Please select 1, 2, 3 or R.");
-                }
-
-                else
-                {
-                 Write("Device ID: ");
-                deviceId = ReadLine().ToUpper();
-
-                deviceFoundRef = FindSmartDevice(deviceId);
-
-                    if (deviceFoundRef != null)
-                    {
-                        WriteLine(deviceId + " NOT added since it is already in the system");
-                    }
-                    else
-                    {
-                        Write("Device Name: ");
-                        deviceName = ReadLine();
-
-                        Write("Manufacturer Name: ");
-                        manufacturerName = ReadLine();
-
-                        Write("Manufacturer Country: ");
-                        manufacturerCountry = ReadLine();
-
-                        Manufacturer manufacturer = new Manufacturer(manufacturerName, manufacturerCountry);
-
-                        switch (choice)
-                        {
-                            case '1':
-                                Write("Brightness (0-100): ");
-                                int brightness = int.Parse(ReadLine());
-
-                                device = new SmartLight(deviceId, deviceName, manufacturer, brightness);
-                                break;
-
-                            case '2':
-                                Write("Temperature: ");
-                                double temp = double.Parse(ReadLine());
-
-                                Write("Battery Level (0-100): ");
-                                int battery = int.Parse(ReadLine());
-
-                                device = new SmartThermostat(deviceId, deviceName, manufacturer, temp, battery);
-                                break;
-
-                            case '3':
-                                Write("Battery Level (0-100): ");
-                                int lockBattery = int.Parse(ReadLine());
-
-                                device = new SmartDoorLock(deviceId, deviceName, manufacturer, lockBattery);
-                                break;
-
-                            default:
-                                WriteLine("Invalid input");
-                                break;
-                        }
-
-                        if (device != null)
-                        {
-                            smartDeviceList.Add(device);
-                            WriteLine(deviceId + " added successfully");
-                        }
-                    }
-                }
-
-                WriteLine();
-                WriteLine("1. Add Smart Light");
-                WriteLine("2. Add Smart Thermostat");
-                WriteLine("3. Add Smart Door Lock");
-                WriteLine("R. Return");
-
-                choice = ReadLine().ToUpper()[0];
-            }
-        }
-        else
-        {
-            WriteLine("No smart devices found in system.");
-        }
-    }
-} // end method
-         public static void SmartDeviceList()
+        public static void SmartDeviceList()
         {
             //
             //Method Name     : void SmartDeviceList() 
@@ -241,7 +126,7 @@ namespace SmartDevices
             if (smartDeviceList.Count == 0)
             {
                 WriteLine("No smart devices found.");
-            }//end if
+            }
             else
             {
                 WriteLine("Smart Devices:");
@@ -249,11 +134,130 @@ namespace SmartDevices
                 foreach (SmartDevice device in smartDeviceList)
                 {
                     WriteLine($"ID: {device.DeviceId} | Name: {device.DeviceName} | Manufacturer: {device.Manufacturer.Name} | {device.GetStatus()}");
-                }//end foreach
-            }//end else
-    
-        } // end method
+                }
+            }
+        } // end method)
+        public static void SmartDeviceAdd()
+        {
+            //
+            //Method Name     : void SmartDeviceAdd() 
+            //Purpose         : Get new Smart Device info and try to add it to DB
+            //Re-use          : none
+            //Input Parameter : none
+            //Output Type     : none
+            //
 
+            {
+                string deviceId = "";
+                string deviceName = "";
+                string manufacturerName = "";
+                string manufacturerCountry = "";
+
+                SmartDevice deviceFoundRef = null;
+                SmartDevice device = null;
+
+                char choice = '0';
+
+                if (smartDeviceList.Count > 0)
+                {
+                    WriteLine();
+                    WriteLine("SMART HOME SYSTEM - Add Smart Device");
+                    WriteLine("=====================================");
+                    WriteLine("1. Add Smart Light");
+                    WriteLine("2. Add Smart Thermostat");
+                    WriteLine("3. Add Smart Door Lock");
+                    WriteLine("R. Return");
+
+                    choice = ReadLine().ToUpper()[0];
+
+                    while (choice != 'R')
+                    {
+                        WriteLine();
+
+                        if (choice != '1' && choice != '2' && choice != '3')
+                        {
+                            WriteLine("Invalid input. Please select 1, 2, 3 or R.");
+                        }
+
+                        else
+                        {
+                            Write("Device ID: ");
+                            deviceId = ReadLine().ToUpper();
+
+                            deviceFoundRef = FindSmartDevice(deviceId);
+
+                            if (deviceFoundRef != null)
+                            {
+                                WriteLine(deviceId + " NOT added since it is already in the system");
+                            }
+                            else
+                            {
+                                Write("Device Name: ");
+                                deviceName = ReadLine();
+
+                                Write("Manufacturer Name: ");
+                                manufacturerName = ReadLine();
+
+                                Write("Manufacturer Country: ");
+                                manufacturerCountry = ReadLine();
+
+                                Manufacturer manufacturer = new Manufacturer(manufacturerName, manufacturerCountry);
+
+                                switch (choice)
+                                {
+                                    case '1':
+                                        Write("Brightness (0-100): ");
+                                        int brightness = int.Parse(ReadLine());
+
+                                        device = new SmartLight(deviceId, deviceName, manufacturer, brightness);
+                                        break;
+
+                                    case '2':
+                                        Write("Temperature: ");
+                                        double temp = double.Parse(ReadLine());
+
+                                        Write("Battery Level (0-100): ");
+                                        int battery = int.Parse(ReadLine());
+
+                                        device = new SmartThermostat(deviceId, deviceName, manufacturer, temp, battery);
+                                        break;
+
+                                    case '3':
+                                        Write("Battery Level (0-100): ");
+                                        int lockBattery = int.Parse(ReadLine());
+
+                                        device = new SmartDoorLock(deviceId, deviceName, manufacturer, lockBattery);
+                                        break;
+
+                                    default:
+                                        WriteLine("Invalid input");
+                                        break;
+                                }
+
+                                if (device != null)
+                                {
+                                    smartDeviceList.Add(device);
+                                    WriteLine(deviceId + " added successfully");
+                                }
+                            }
+                        }
+
+                        WriteLine();
+                        WriteLine("1. Add Smart Light");
+                        WriteLine("2. Add Smart Thermostat");
+                        WriteLine("3. Add Smart Door Lock");
+                        WriteLine("R. Return");
+
+                        choice = ReadLine().ToUpper()[0];
+                    }
+                }
+                else
+                {
+                    WriteLine("No smart devices found in system.");
+                }
+            }
+
+        } // end method
         public static void SmartDeviceRemove()
         {
             //
@@ -263,141 +267,137 @@ namespace SmartDevices
             //Input Parameter : none
             //Output Type     : none
             //
-             string deviceId = "";
-             SmartDevice smdRef;
+            string deviceId = "";
+            SmartDevice smdRef;
 
-        if (smartDeviceList.Count > 0)
-         {
-          Write("Please enter the SmartDevice ID to remove: ");
-          deviceId = ReadLine().ToUpper();
+            if (smartDeviceList.Count > 0)
+            {
+                Write("Please enter the SmartDevice ID to remove: ");
+                deviceId = ReadLine().ToUpper();
 
-          smdRef = FindSmartDevice(deviceId);
-                  if (smdRef != null)
-                  {
-                     smartDeviceList.Remove(smdRef);
-                     WriteLine(deviceId + " removed successfully.");
-                  }//end if
-                 else
-                 {
-                    WriteLine(deviceId + " not removed since it is not in the system.");
-                 }//end else
+                smdRef = FindSmartDevice(deviceId);
+                if (smdRef != null)
+                {
+                    smartDeviceList.Remove(smdRef);
+                    WriteLine(deviceId + " removed successfully.");
                 }//end if
-         else
-        {
-           WriteLine("No smart devices found to remove.");
-        }//end else
-   
+                else
+                {
+                    WriteLine(deviceId + " not removed since it is not in the system.");
+                }//end else
+            }//end if
+            else
+            {
+                WriteLine("No smart devices found to remove.");
+            }//end else
+
         } // end method
 
-      public static void SmartDeviceUpdate()
-{
-           //
- //Method Name     : void SmartDeviceUpdate() 
- //Purpose         : Update existing smart device info
- //Re-use          : none
- //Input Parameter : none
- //Output Type     : none
- //
+        public static void SmartDeviceUpdate()
+        {
+            //
+            //Method Name     : void SmartDeviceUpdate() 
+            //Purpose         : Update existing smart device info
+            //Re-use          : none
+            //Input Parameter : none
+            //Output Type     : none
+            //
 
- string deviceId = "";
- string deviceName = "";
- Manufacturer manufacturer = null;
- bool validInput = false;
+            string deviceId = "";
+            string deviceName = "";
+            Manufacturer manufacturer = null;
+            bool validInput = false;
 
- SmartDevice deviceFoundRef = null;
- bool change = false;
+            SmartDevice deviceFoundRef = null;
+            bool change = false;
 
- if(smartDeviceList.Count > 0)
- {
-     WriteLine();
-     WriteLine("Please enter the SmartDevice ID:");
-     deviceId = ReadLine().ToUpper();
-     deviceFoundRef = FindSmartDevice(deviceId);
-     if (deviceFoundRef != null)
-     {
-         Write("New device name or press Enter to keep current name: ");
-         deviceName = ReadLine();
-         if (deviceName.Length != 0)
-         {
-             deviceFoundRef.DeviceName = deviceName;
-             change = true;
-         }//end if
-         while (validInput == false)
-         {
-             Write("Turn device ON/OFF (on/off) or press Enter to not change: ");
-             string isOnInput = ReadLine().ToUpper();
-             if (isOnInput.Length == 0)
-             {
-                 validInput = true;
-             }//end if
-             else if (isOnInput == "ON")
-             {
+            if (smartDeviceList.Count > 0)
+            {
+                WriteLine();
+                WriteLine("SMART DEVICES AVAILABLE TO UPDATE:");
+                foreach (SmartDevice device in smartDeviceList)
+                    {
+                        WriteLine($"ID: {device.DeviceId} | Name: {device.DeviceName} | Manufacturer: {device.Manufacturer.Name} | {device.GetStatus()}");
+                    }
+                WriteLine();
+                WriteLine("Please enter the SmartDevice ID:");
+                deviceId = ReadLine().ToUpper();
+                deviceFoundRef = FindSmartDevice(deviceId);
+                if (deviceFoundRef != null)
+                {
+                    Write("New device name or press Enter to keep current name: ");
+                    deviceName = ReadLine();
+                    if (deviceName.Length != 0)
+                    {
+                        deviceFoundRef.DeviceName = deviceName;
+                        change = true;
+                    }//end if
+                    while (validInput == false)
+                    {
+                        Write("Turn device ON/OFF (on/off) or press Enter to not change: ");
+                        string isOnInput = ReadLine().ToUpper();
+                        if (isOnInput.Length == 0)
+                        {
+                            validInput = true;
+                        }//end if
+                        else if (isOnInput == "ON")
+                        {
 
-                 deviceFoundRef.TurnOn();
-                 change = true;
-                 validInput = true;
-             }//end else if
-             else if (isOnInput == "OFF")
-             {
-                 deviceFoundRef.TurnOff();
-                 change = true;
-                 validInput = true;
-             }//end else if
-             else
-             {
-                 WriteLine("Invalid input. Please enter 'ON' or 'OFF'.");
-             }//end else
-         }//end while
-         if (deviceFoundRef is IBatteryPowered batteryPowered)
-         {
-             validInput = false;
+                            deviceFoundRef.TurnOn();
+                            change = true;
+                            validInput = true;
+                        }//end else if
+                        else if (isOnInput == "OFF")
+                        {
+                            deviceFoundRef.TurnOff();
+                            change = true;
+                            validInput = true;
+                        }//end else if
+                        else
+                        {
+                            WriteLine("Invalid input. Please enter 'ON' or 'OFF'.");
+                        }//end else
+                    }//end while
+                    if (deviceFoundRef is IBatteryPowered batteryPowered)
+                    {
+                        validInput = false;
 
-             while (validInput == false)
-             {
-                 Write("New battery level (0-100) or press Enter to keep current level: ");
-                 string input = ReadLine();
-                 if (input.Length == 0)
-                 {
-                     validInput = true;
-                 }//end if
-                 else if (int.TryParse(input, out int batteryLevelInput))
-                 {
+                        while (validInput == false)
+                        {
+                            Write("New battery level (0-100) or press Enter to keep current level: ");
+                            string input = ReadLine();
+                            if (input.Length == 0)
+                            {
+                                validInput = true;
+                            }//end if
+                            else if (int.TryParse(input, out int batteryLevelInput))
+                            {
 
-                     if (batteryLevelInput >= 0 && batteryLevelInput <= 100)
-                     {
-                         batteryPowered.BatteryLevel = batteryLevelInput;
-                         change = true;
-                         validInput = true;
-                     }//end if
-                     else
-                     {
-                         WriteLine("Invalid input. Please enter a valid integer between 0 and 100.");
-                     }//end else
-                 }//end else if
-                 else
-                 {
-                     WriteLine($"Format Error: {input} is not a valid number. Please use digits.");
-                 }//end else
-             }//end while
-              
-         }//end if
-         if (change)
-         {
-             WriteLine($"{deviceId} updated successfully.");
-         }//end if
-     }//end if
- }//end if
- else
- {
-     WriteLine($"SmartDevice {deviceId.ToUpper()} NOT FOUND!");
- }//end else
+                                if (batteryLevelInput >= 0 && batteryLevelInput <= 100)
+                                {
+                                    batteryPowered.BatteryLevel = batteryLevelInput;
+                                    change = true;
+                                    validInput = true;
+                                }//end if
+                                else
+                                {
+                                    WriteLine("Invalid input. Please enter a valid integer between 0 and 100.");
+                                }//end else
+                            }//end else if
+                            else
+                            {
+                                WriteLine($"Format Error: {input} is not a valid number. Please use digits.");
+                            }//end else
+                        }//end while
+
+                    }//end if
                     if (deviceFoundRef is SmartLight smartLight)
                     {
                         validInput = false;
                         while (validInput == false)
                         {
-                            Console.Write("Set light brightness level 0-100 or press Enter to keep current status: ");
-                            string input = Console.ReadLine();
+                            Write("Set light brightness level 0-100 or press Enter to keep current status: ");
+                            string input = ReadLine();
                             if (input.Length == 0)
                             {
                                 validInput = true;
@@ -412,34 +412,29 @@ namespace SmartDevices
                                 }//end if
                                 else
                                 {
-                                    Console.WriteLine("Invalid input. Please enter a valid input: 0-100.");
+                                    WriteLine("Invalid input. Please enter a valid input: 0-100.");
                                 }//end else
                             }//end else if
                             else
                             {
-                                Console.WriteLine($"Format Error: {input} is not a valid option. Please use digits.");
+                                WriteLine($"Format Error: {input} is not a valid option. Please use digits.");
                             }//end else
                         }//end while
-                    }
-                    if (change == true)
-                    {
-                        Console.WriteLine($"{deviceId} updated successfully.");
-                        change = false;
                     }//end if
                     if (deviceFoundRef is SmartThermostat smartThermostat)
                     {
                         validInput = false;
                         while (validInput == false)
                         {
-                            Console.Write("Set Temperature or press Enter to keep current status: ");
-                            string input = Console.ReadLine();
+                            Write("Set Temperature or press Enter to keep current status: ");
+                            string input = ReadLine();
                             if (input.Length == 0)
                             {
                                 validInput = true;
                             }//end if
                             else if (double.TryParse(input, out double temperatureInput))
                             {
-                                if (temperatureInput >= 0 || temperatureInput <= 100)
+                                if (temperatureInput >= 0 && temperatureInput <= 100)
                                 {
                                     smartThermostat.SetTemperature(temperatureInput);
                                     change = true;
@@ -447,73 +442,68 @@ namespace SmartDevices
                                 }//end if
                                 else
                                 {
-                                    Console.WriteLine("Invalid input. Please enter a valid input: decimal number.");
+                                    WriteLine("Invalid input. Please enter a valid input: decimal number.");
                                 }//end else
                             }//end else if
                             else
                             {
-                                Console.WriteLine($"Format Error: {input} is not a valid option. Please use a decimal number.");
+                                WriteLine($"Format Error: {input} is not a valid option. Please use a decimal number.");
                             }//end else
                         }//end while
-                    }
-                    if (change == true)
-                    {
-                        Console.WriteLine($"{deviceId} updated successfully.");
-                        change = false;
                     }//end if
                     if (deviceFoundRef is SmartDoorLock smartDoorLock)
                     {
                         validInput = false;
-                        string lockState ="";
                         while (validInput == false)
                         {
-                            if (smartDoorLock.IsLocked == true)
-                            {
-                                lockState = "Locked";
-                            }
-                            else
-                            {
-                                lockState = "Unlocked";
-                            }
-                            Console.Write("Set door is currently {0} do you want to change it Y/N?",lockState);
-                            string input = Console.ReadLine();
-                            if (input.Length == 1 && input.ToLower() == "n")
+
+                            string currentStatus = smartDoorLock.IsLocked ? "LOCKED" : "UNLOCKED";
+
+                            Write($"Current status: {currentStatus}. Enter 'LOCK' to lock door, 'UNLOCK' to unlock door, or press Enter to skip: ");
+                            string input = ReadLine();
+                            if (input.Length == 0)
                             {
                                 validInput = true;
                             }//end if
-                            else if (input.Length == 1)
+                            else if (input.ToUpper() == "LOCK")
                             {
-                                if (input.ToLower() == "y")
+                                if (!smartDoorLock.IsLocked)
                                 {
                                     smartDoorLock.ToggleLock();
                                     change = true;
-                                    validInput = true;
                                 }//end if
-                                else
+                                validInput = true;
+                            }//end else if
+                            else if (input.ToUpper() == "UNLOCK")
+                            {
+                                if (smartDoorLock.IsLocked)
                                 {
-                                    Console.WriteLine("Invalid input. Please enter a valid input: Y or N.");
-                                }//end else
+                                    smartDoorLock.ToggleLock();
+                                    change = true;
+                                }//end if
+                                validInput = true;
                             }//end else if
                             else
                             {
-                                Console.WriteLine($"Format Error: {input} is not a valid option. Please use Y or N.");
+                                WriteLine($"{input} is not a valid option. Please enter Lock or Unlock.");
                             }//end else
                         }//end while
-                    }
-                    if (change == true)
-                    {
-                        Console.WriteLine($"{deviceId} updated successfully.");
-                        change = false;
                     }//end if
+                }//end if
+                else
+                {
+                    WriteLine($"SmartDevice {deviceId.ToUpper()} NOT FOUND!");
+                }//end else
+                if (change == true)
+                {
+                    WriteLine($"SmartDevice {deviceId.ToUpper()} updated successfully.");
                 }//end if
             }//end if
             else
             {
-                WriteLine($"SmartDevice {deviceId.ToUpper()} NOT FOUND!");
-            }//end else
-        }//end if
-    
-        
+                WriteLine("No SmartDevice found in the list to update.");
+            }
+        } // end method
         private static SmartDevice FindSmartDevice(string deviceId)
         {
             //
@@ -531,8 +521,8 @@ namespace SmartDevices
             {
                 if (smartDeviceList[lc].DeviceId == deviceId)
                 {
-                found = true;
-                deviceRef = smartDeviceList[lc];
+                    found = true;
+                    deviceRef = smartDeviceList[lc];
                 } // end if
 
                 lc++;
@@ -592,6 +582,7 @@ namespace SmartDevices
             {
                 WriteLine(ex.Message);
             } // end catch
-        }//end method
-    }//end class internal program
-}//end namespace
+        }
+
+    }
+}
