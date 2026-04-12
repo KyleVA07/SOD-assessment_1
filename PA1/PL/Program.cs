@@ -399,7 +399,7 @@ namespace SmartDevices
 
 } // end method
     
-        } // end method
+        
         private static SmartDevice FindSmartDevice(string deviceId)
         {
             //
