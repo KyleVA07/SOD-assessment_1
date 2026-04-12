@@ -19,8 +19,7 @@ namespace SmartDevices
         //Constructors
         public Manufacturer()
         {
-             Name = "Unknown";
-             Country = "Unknown";
+             
         }
         public Manufacturer(string name, string country)
         {
