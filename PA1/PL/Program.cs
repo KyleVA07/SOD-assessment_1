@@ -362,6 +362,51 @@ namespace SmartDevices
                             WriteLine("Invalid input. Please enter 'ON' or 'OFF'.");
                         }//end else
                     }//end while
+                    validInput = false;
+ while (validInput == false)
+ {
+     Write("New manufacturer name or press Enter to keep current name: ");
+     string manufacturerName = ReadLine();
+     //if statemnet
+     if (manufacturerName.Length == 0)
+     {
+         validInput = true;
+         change = true;
+     }//end if
+     else if (manufacturerName.Length!=0)
+     {
+         deviceFoundRef.Manufacturer.Name = manufacturerName;
+         validInput=true;
+         change = true;
+     }//end if
+     else
+     {
+         WriteLine($"{manufacturerName} is not valid.Please enter a string");
+     }//end else
+ }
+ validInput = false;
+ while (validInput == false)
+ {
+     Write("New manufacturer country or press Enter to keep current name: ");
+     string manufacturerCountry = ReadLine();
+     //if statemnet
+     if (manufacturerCountry.Length == 0)
+     {
+         validInput = true;
+         change = true;
+     }//end if
+     else if (manufacturerCountry.Length != 0)
+     {
+         deviceFoundRef.Manufacturer.Country = manufacturerCountry;
+         validInput = true;
+         change = true;
+     }//end if
+     else
+     {
+         WriteLine($"{manufacturerCountry} is not valid. Please enter a string");
+     }//end else
+
+ }//end while
                     if (deviceFoundRef is IBatteryPowered batteryPowered)
                     {
                         validInput = false;
